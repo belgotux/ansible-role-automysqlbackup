@@ -14,7 +14,7 @@ CONFIG_do_monthly="{{ automysqlbackup_monthly }}"
 CONFIG_do_weekly="{{ automysqlbackup_weekly }}"
 CONFIG_rotation_daily={{ automysqlbackup_daily_to_keep }}
 CONFIG_rotation_weekly={{ automysqlbackup_weekly_to_keep }}
-CONFIG_rotation_monthly= {{ automysqlbackup_monthly_to_keep }}
+CONFIG_rotation_monthly={{ automysqlbackup_monthly_to_keep }}
 
 CONFIG_mysql_dump_port={{ automysqlbackup_current_configuration.port | default(3306) }}
 

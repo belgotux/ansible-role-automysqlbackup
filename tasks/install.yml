@@ -14,23 +14,24 @@
 - name: "automysqlbackup - get lastest version"
   git:
     repo: https://github.com/belgotux/automysqlbackup
-    dest: '{{ automysqlbackup_repo }}'
+    dest: '{{ automysqlbackup_repo }}/automysqlbackup'
     update: yes
 
 - name: "automysqlbackup - copy bin"
   copy: 
     remote_src: yes
-    src: '{{ automysqlbackup_repo }}'/automysqlbackup/automysqlbackup
-    dest: '{{ automysqlbackup_bin }}'/automysqlbackup
+    src: '{{ automysqlbackup_repo }}/automysqlbackup/automysqlbackup'
+    dest: '{{ automysqlbackup_bin }}/automysqlbackup'
+    mode: '0775'
 
 - name: "automysqlbackup - create configuration directory"
   file:
     dest: '{{ automysqlbackup_conf }}'
     mode: '0755'
     state: directory
-- name: "automysqlbackup - copy configuration"
-  copy: 
-    remote_src: yes
-    src: '{{ automysqlbackup_repo }}/automysqlbackup/{{ item }}'
-    dest: '{{ automysqlbackup_conf }}/{{ item }}'
-  loop: ['template.cnf','template.conf']
+# - name: "automysqlbackup - copy configuration"
+#   copy: 
+#     remote_src: yes
+#     src: '{{ automysqlbackup_repo }}/automysqlbackup/{{ item }}'
+#     dest: '{{ automysqlbackup_conf }}/{{ item }}'
+#   loop: ['template.cnf','template.conf']

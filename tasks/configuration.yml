@@ -1,7 +1,16 @@
+- name: create user {{ automysqlbackup_default_cron_user }}
+  user:
+    name: '{{ automysqlbackup_default_cron_user }}'
+    group: '{{ automysqlbackup_default_cron_group }}'
+    system: true
+    home: '{{ automysqlbackup_backupdir }}'
+  when: automysqlbackup_create_user
+
 - name: create the differents configurations and credentials files
-  import_tasks: configuration-server.yml
+  include_tasks: configuration-server.yml
   loop: '{{ automysqlbackup_configurations }}'
-  loop_var: automysqlbackup_current_configuration
+  loop_control:
+    loop_var: automysqlbackup_current_configuration
 - name: create cron file
   template:
     src: cron.j2

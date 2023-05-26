@@ -1,9 +1,9 @@
 [mysqldump]
-user={{ automysqlbackup_current_configuration.username }}
-password="{{ automysqlbackup_current_configuration.passwd }}"
+user={{ automysqlbackup_current_configuration.user | default(automysqlbackup_default_user) }}
+password="{{ automysqlbackup_current_configuration.passwd | default(automysqlbackup_default_passwd) }}"
 [mysql]
-user={{ automysqlbackup_current_configuration.username }}
-password="{{ automysqlbackup_current_configuration.passwd }}"
+8user={{ automysqlbackup_current_configuration.user | default(automysqlbackup_default_user) }}
+password="{{ automysqlbackup_current_configuration.passwd | default(automysqlbackup_default_passwd) }}"
 [mysqlshow]
-user={{ automysqlbackup_current_configuration.username }}
-password="{{ automysqlbackup_current_configuration.passwd }}"
+user={{ automysqlbackup_current_configuration.user | default(automysqlbackup_default_user) }}
+password="{{ automysqlbackup_current_configuration.passwd | default(automysqlbackup_default_passwd) }}"
