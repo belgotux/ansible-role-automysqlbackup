@@ -1,0 +1,35 @@
+CONFIG_mysql_mycnf_file='{{ automysqlbackup_conf }}/{{ automysqlbackup_current_configuration.name }}.cnf'
+CONFIG_mysql_dump_host='{{ automysqlbackup_current_configuration.server }}'
+CONFIG_mysql_dump_host_friendly='{{ automysqlbackup_current_configuration.name }}'
+CONFIG_backup_dir='{{ automysqlbackup_backupdir }}'
+CONFIG_multicore='{{ automysqlbackup_multicore }}'
+CONFIG_multicore_threads='{{ automysqlbackup_multicore_threads }}'
+
+CONFIG_db_names="{{ automysqlbackup_current_configuration.db_names | default('()') }}"
+CONFIG_db_month_names="{{ automysqlbackup_current_configuration.db_names | default('()') }}"
+CONFIG_db_exclude="{{ automysqlbackup_current_configuration.db_exclude | default(automysqlbackup_default_db_exclude) }}"
+CONFIG_table_exclude="{{ automysqlbackup_current_configuration.table_exclude | default(automysqlbackup_default_table_exclude) }}"
+
+CONFIG_do_monthly="{{ automysqlbackup_monthly }}"
+CONFIG_do_weekly="{{ automysqlbackup_weekly }}"
+CONFIG_rotation_daily={{ automysqlbackup_daily_to_keep }}
+CONFIG_rotation_weekly={{ automysqlbackup_weekly_to_keep }}
+CONFIG_rotation_monthly= {{ automysqlbackup_monthly_to_keep }}
+
+CONFIG_mysql_dump_port={{ automysqlbackup_current_configuration.port | default(3306) }}
+
+CONFIG_mysql_no_tablespaces='{{ automysqlbackup_no_tablespaces }}'
+CONFIG_mysql_dump_usessl='{{ automysqlbackup_dump_usessl }}'
+CONFIG_mysql_dump_single_transaction='{{ automysqlbackup_dump_single_transaction }}'
+CONFIG_mysql_dump_dbstatus='{{ automysqlbackup_dump_dbstatus }}'
+CONFIG_mysql_dump_create_database='{{ automysqlbackup_dump_create_database }}'
+CONFIG_mysql_dump_use_separate_dirs='{{ automysqlbackup_dump_use_separate_dirs }}'
+
+CONFIG_mysql_dump_compression='{{ automysqlbackup_dump_compression }}'
+CONFIG_mysql_dump_latest='{{ automysqlbackup_dump_latest }}'
+CONFIG_mysql_dump_latest_clean_filenames='{{ automysqlbackup_dump_latest_clean_filenames }}'
+
+CONFIG_mailcontent='{{ automysqlbackup_mailcontent }}'
+CONFIG_mail_address='{{ automysqlbackup_mail_address }}'
+
+CONFIG_dryrun={{ automysqlbackup_dryrun }}

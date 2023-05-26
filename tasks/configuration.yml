@@ -1,0 +1,8 @@
+- name: create the differents configurations and credentials files
+  import_tasks: configuration-server.yml
+  loop: '{{ automysqlbackup_configurations }}'
+  loop_var: automysqlbackup_current_configuration
+- name: create cron file
+  template:
+    src: cron.j2
+    dest: '{{ automysqlbackup_default_cron_path }}/automysqlbackup'

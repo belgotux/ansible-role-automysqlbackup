@@ -1,0 +1,9 @@
+[mysqldump]
+user={{ automysqlbackup_current_configuration.username }}
+password="{{ automysqlbackup_current_configuration.passwd }}"
+[mysql]
+user={{ automysqlbackup_current_configuration.username }}
+password="{{ automysqlbackup_current_configuration.passwd }}"
+[mysqlshow]
+user={{ automysqlbackup_current_configuration.username }}
+password="{{ automysqlbackup_current_configuration.passwd }}"

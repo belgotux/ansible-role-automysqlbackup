@@ -1,0 +1,36 @@
+- name: "automysqlbackup - install debian client"
+  apt: 
+    pkg: '{{ automysqlbackup_client }}'
+    state: present
+    update_cache: yes
+  when: ansible_os_family == "Debian"
+- name: "automysqlbackup - install redhat client"
+  yum: 
+    name: '{{ automysqlbackup_client }}'
+    state: present
+    update_cache: yes
+  when: ansible_os_family == "RedHat"
+
+- name: "automysqlbackup - get lastest version"
+  git:
+    repo: https://github.com/belgotux/automysqlbackup
+    dest: '{{ automysqlbackup_repo }}'
+    update: yes
+
+- name: "automysqlbackup - copy bin"
+  copy: 
+    remote_src: yes
+    src: '{{ automysqlbackup_repo }}'/automysqlbackup/automysqlbackup
+    dest: '{{ automysqlbackup_bin }}'/automysqlbackup
+
+- name: "automysqlbackup - create configuration directory"
+  file:
+    dest: '{{ automysqlbackup_conf }}'
+    mode: '0755'
+    state: directory
+- name: "automysqlbackup - copy configuration"
+  copy: 
+    remote_src: yes
+    src: '{{ automysqlbackup_repo }}/automysqlbackup/{{ item }}'
+    dest: '{{ automysqlbackup_conf }}/{{ item }}'
+  loop: ['template.cnf','template.conf']

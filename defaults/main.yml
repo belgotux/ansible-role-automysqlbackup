@@ -1,0 +1,35 @@
+---
+automysqlbackup_repo: /opt
+automysqlbackup_client: mariadb
+automysqlbackup_bin: /usr/local/bin
+automysqlbackup_conf: /etc/automysqlbackup
+automysqlbackup_multicore: no # yes or no
+automysqlbackup_multicore_threads: auto
+
+automysqlbackup_default_user: automysqlbackup
+#automysqlbackup_default_passwd: 
+automysqlbackup_default_db_exclude: "( 'information_schema' 'performance_schema' 'sys' )"
+automysqlbackup_default_table_exclude: "('mysql.event')"
+#automysqlbackup_default_cron:
+automysqlbackup_default_cron_user: automysqlbackup
+automysqlbackup_default_cron_path: /etc/cron.d
+
+automysqlbackup_monthly: 01
+automysqlbackup_weekly: 5
+
+automysqlbackup_daily_to_keep: 6
+automysqlbackup_weekly_to_keep: 28
+automysqlbackup_monthly_to_keep: 180
+automysqlbackup_no_tablespaces: yes
+automysqlbackup_dump_usessl: no
+automysqlbackup_dump_single_transaction: no
+automysqlbackup_dump_dbstatus: yes
+automysqlbackup_dump_create_database: no
+automysqlbackup_dump_use_separate_dirs: yes
+automysqlbackup_dump_compression: gzip
+automysqlbackup_dump_latest: yes
+automysqlbackup_dump_latest_clean_filenames: no
+
+automysqlbackup_mailcontent: log
+automysqlbackup_mail_address:
+automysqlbackup_dryrun: 0

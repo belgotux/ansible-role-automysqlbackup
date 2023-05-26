@@ -1,0 +1,19 @@
+- name: take default username if not user is set for the server {{ automysqlbackup_current_configuration.name }}
+  set_fact:
+    automysqlbackup_current_configuration.user: '{{ automysqlbackup_default_user }}'
+  when: automysqlbackup_current_configuration.user is not defined
+- name: take default password if not user is set for the server {{ automysqlbackup_current_configuration.name }}
+  set_fact:
+    automysqlbackup_current_configuration.passwd: '{{ automysqlbackup_default_passwd }}'
+  when: automysqlbackup_current_configuration.passwd is not defined
+  
+
+- name: copy access file
+  template:
+    src: template.cnf.j2
+    dest: '{{ automysqlbackup_conf }}/{{ automysqlbackup_current_configuration.name }}.cnf'
+
+- name: copy configuration file
+  template:
+    src: template.conf.j2
+    dest: '{{ automysqlbackup_conf }}/{{ automysqlbackup_current_configuration.name }}.conf'
