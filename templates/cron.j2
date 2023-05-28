@@ -1,4 +1,4 @@
 {% for cur_conf in automysqlbackup_configurations %}
-{{ cur_conf.cron | default (automysqlbackup_default_cron) }}   {{ automysqlbackup_default_cron_user }}     {{ automysqlbackup_bin }}/automysqlbackup -c '{{ automysqlbackup_conf }}/{{ cur_conf.name }}.conf'
+{{ cur_conf.cron | default (automysqlbackup_default_cron) }}   {{ automysqlbackup_default_cron_user }}     {{ automysqlbackup_bin }}/automysqlbackup '{{ automysqlbackup_conf }}/{{ cur_conf.name }}.conf'
 
 {% endfor %}

@@ -1,3 +1,6 @@
+#version=3.0_rc2
+# DONT'T REMOVE THE PREVIOUS VERSION LINE!
+
 CONFIG_mysql_mycnf_file='{{ automysqlbackup_conf }}/{{ automysqlbackup_current_configuration.name }}.cnf'
 CONFIG_mysql_dump_host='{{ automysqlbackup_current_configuration.server }}'
 CONFIG_mysql_dump_host_friendly='{{ automysqlbackup_current_configuration.name }}'
@@ -5,10 +8,10 @@ CONFIG_backup_dir='{{ automysqlbackup_backupdir }}'
 CONFIG_multicore='{{ automysqlbackup_multicore }}'
 CONFIG_multicore_threads='{{ automysqlbackup_multicore_threads }}'
 
-CONFIG_db_names="{{ automysqlbackup_current_configuration.db_names | default('()') }}"
-CONFIG_db_month_names="{{ automysqlbackup_current_configuration.db_names | default('()') }}"
-CONFIG_db_exclude="{{ automysqlbackup_current_configuration.db_exclude | default(automysqlbackup_default_db_exclude) }}"
-CONFIG_table_exclude="{{ automysqlbackup_current_configuration.table_exclude | default(automysqlbackup_default_table_exclude) }}"
+CONFIG_db_names={{ automysqlbackup_current_configuration.db_names | default('()') }}
+CONFIG_db_month_names={{ automysqlbackup_current_configuration.db_names | default('()') }}
+CONFIG_db_exclude={{ automysqlbackup_current_configuration.db_exclude | default(automysqlbackup_default_db_exclude) }}
+CONFIG_table_exclude={{ automysqlbackup_current_configuration.table_exclude | default(automysqlbackup_default_table_exclude) }}
 
 CONFIG_do_monthly="{{ automysqlbackup_monthly }}"
 CONFIG_do_weekly="{{ automysqlbackup_weekly }}"

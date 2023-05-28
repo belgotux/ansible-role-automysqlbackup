@@ -6,7 +6,19 @@ Role to install the up-to-date version of [automysqlbackup fork](https://github.
 Requirements
 ------------
 
-Having mariadb or mysql client binary installed. By default mariadb is installed
+Install the minimal rights on the target servers for automysqlbackup. Here an example to backup all the current and futur databases on the SAME server: 
+```sql
+CREATE USER 'automysqlbackup'@'localhost' IDENTIFIED BY  '<your_password_secret>';
+GRANT SELECT, LOCK TABLES, SHOW VIEW, EVENT, TRIGGER,USAGE ON *.* TO 'automysqlbackup'@'localhost' ;
+```
+
+Install the minimal rights on target servers B,C,D,etc to have backup done on server A.
+```sql
+CREATE USER 'automysqlbackup'@'serverA' IDENTIFIED BY  '<your_password_secret>';
+GRANT SELECT, LOCK TABLES, SHOW VIEW, EVENT, TRIGGER,USAGE ON *.* TO 'automysqlbackup'@'serverA' ;
+```
+
+Having mariadb or mysql client binary installed. By default mariadb is installed.
 
 Role Variables
 --------------
@@ -87,6 +99,23 @@ Including an example of how to use your role (for instance, with variables passe
               automysqlbackup_backupdir: /tmp/backup
               automysqlbackup_mailcontent: quiet
               automysqlbackup_mail_address: root
+
+Troubleshooting
+---------------
+## Error with the system user
+If you execute the script with another user than the `automysqlbackup_default_cron_user`, automysqlbackup can't read the cnf file with the mysql credentials, and you have this error :
+```
+# Checking for permissions to write to folders:
+base folder /tmp ... exists ... ok.
+backup folder /tmp/backup ... exists ... writable? mktemp: failed to create file via template '/tmp/backup/tmp.XXXXXX': Permission denied
+no. Exiting.
+Note: Parsed config file /etc/automysqlbackup/pc.conf.
+Note: /etc/automysqlbackup/automysqlbackup.conf was not found - no global config file.
+Error: /tmp/backup is not writable. Exiting.
+/usr/local/bin/automysqlbackup: line 875: 6: Bad file descriptor
+/usr/local/bin/automysqlbackup: line 876: 7: Bad file descriptor
+Skipping normal output methods, since the program exited before any log files could be created.
+```  
 
 License
 -------
