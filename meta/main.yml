@@ -1,4 +1,5 @@
 galaxy_info:
+  role_name: automysqlbackup
   author: belgotux
   description: Role to install the up-to-date version of automysqlbackup fork https://github.com/belgotux/automysqlbackup of the not maintained wipe_out's project on sourceforge
   license: GPL-3.0-only
