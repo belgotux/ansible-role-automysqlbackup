@@ -11,6 +11,19 @@
     update_cache: yes
   when: ansible_os_family == "RedHat"
 
+- name: "automysqlbackup - install redhat pigz and pbzip2"
+  apt: 
+    pkg: '{{ automysqlbackup_multicore_bin }}'
+    state: present
+    update_cache: yes
+  when: ansible_os_family == "Debian" and automysqlbackup_multicore == 'yes'
+- name: "automysqlbackup - install redhat pigz and pbzip2"
+  yum: 
+    name: '{{ automysqlbackup_multicore_bin }}'
+    state: present
+    update_cache: yes
+  when: ansible_os_family == "RedHat" and automysqlbackup_multicore == 'yes'
+
 - name: "automysqlbackup - get lastest version"
   git:
     repo: https://github.com/belgotux/automysqlbackup

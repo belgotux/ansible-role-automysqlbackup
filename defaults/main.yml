@@ -1,6 +1,9 @@
 ---
 automysqlbackup_repo: /opt
 automysqlbackup_client: mariadb-client
+automysqlbackup_multicore_bin:
+  - pigz
+  - pbzip2
 automysqlbackup_bin: /usr/local/bin
 automysqlbackup_conf: /etc/automysqlbackup
 automysqlbackup_multicore: 'no' # yes or no
