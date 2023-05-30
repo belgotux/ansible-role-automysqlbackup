@@ -13,11 +13,11 @@ CONFIG_db_month_names={{ automysqlbackup_current_configuration.db_names | defaul
 CONFIG_db_exclude={{ automysqlbackup_current_configuration.db_exclude | default(automysqlbackup_default_db_exclude) }}
 CONFIG_table_exclude={{ automysqlbackup_current_configuration.table_exclude | default(automysqlbackup_default_table_exclude) }}
 
-CONFIG_do_monthly="{{ automysqlbackup_monthly }}"
-CONFIG_do_weekly="{{ automysqlbackup_weekly }}"
-CONFIG_rotation_daily={{ automysqlbackup_daily_to_keep }}
-CONFIG_rotation_weekly={{ automysqlbackup_weekly_to_keep }}
-CONFIG_rotation_monthly={{ automysqlbackup_monthly_to_keep }}
+CONFIG_do_monthly="{{ automysqlbackup_current_configuration.monthly | default(automysqlbackup_monthly) }}"
+CONFIG_do_weekly="{{ automysqlbackup_current_configuration.weekly | default(automysqlbackup_weekly) }}"
+CONFIG_rotation_daily={{ automysqlbackup_current_configuration.daily_to_keep | default(automysqlbackup_daily_to_keep) }}
+CONFIG_rotation_weekly={{ automysqlbackup_current_configuration.weekly_to_keep | default(automysqlbackup_weekly_to_keep) }}
+CONFIG_rotation_monthly={{ automysqlbackup_current_configuration.monthly_to_keep | default(automysqlbackup_monthly_to_keep) }}
 
 CONFIG_mysql_dump_port={{ automysqlbackup_current_configuration.port | default(3306) }}
 

@@ -33,15 +33,20 @@ Role Variables
 ### client configuration
 - `automysqlbackup_default_user` username to use for all servers by default (default `automysqlbackup`)
 - `automysqlbackup_default_passwd` password to use for all servers by default
-- `automysqlbackup_configurations` list of servers to backup. Take the value of `automysqlbackup_default_user` and `automysqlbackup_default_passwd` if `user` and `passwd` is not defined
+- `automysqlbackup_configurations` list of servers to backup. Take the value of `automysqlbackup_default_user`, `automysqlbackup_default_passwd`, etc if `user`, `passwd`, etc is not defined
 ```
 automysqlbackup_configurations:
 - name: server1
   server: xxx.yourdomain.tld
-  port: 3306
-  user: test
-  passwd: testpwd
-  cron: "0 23 * * *"
+  port: 3306            # default use 3306
+  user: test            # default use `automysqlbackup_default_user`
+  passwd: testpwd       # default use `automysqlbackup_default_passwd`
+  cron: "0 23 * * *"    # default use `automysqlbackup_default_cron`
+  montly: 01            # default use `automysqlbackup_monthly`
+  weekly: 5             # default use `automysqlbackup_weekly`
+  daily_to_keep: 5      # default use `automysqlbackup_daily_to_keep`
+  weekly_to_keep: 4     # default use `automysqlbackup_weekly_to_keep`
+  monthly_to_keep: 3    # default use `automysqlbackup_monthly_to_keep`
 - name: server2
   server: 192.168.x.x
 ```
@@ -99,6 +104,7 @@ Including an example of how to use your role (for instance, with variables passe
               automysqlbackup_backupdir: /tmp/backup
               automysqlbackup_mailcontent: quiet
               automysqlbackup_mail_address: root
+              automysqlbackup_default_cron: 0 1 * * *
 
 Troubleshooting
 ---------------
