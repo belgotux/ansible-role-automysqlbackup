@@ -25,14 +25,14 @@ Role Variables
 
 ## Needed
 ### server configuration
-- `automysqlbackup_repo` direcoty to put the git repository (default `/opt`)
-- `automysqlbackup_client` client binary : can be mariadb-client or mysql-client (default `mariadb-client`)
-- `automysqlbackup_bin` client directory (default `/usr/local/bin`)
-- `automysqlbackup_conf` configuration directory (default `/etc/automysqlbackup`)
+- `automysqlbackup_repo` directory to put the git repository (default `/opt`)
+- `automysqlbackup_client` sql client binary : can be mariadb-client or mysql-client (default `mariadb-client`)
+- `automysqlbackup_bin` script directory (default `/usr/local/bin`)
+- `automysqlbackup_conf` configurations directory (default `/etc/automysqlbackup`)
 - `automysqlbackup_backupdir` backup root directory
-### client configuration
-- `automysqlbackup_default_user` username to use for all servers by default (default `automysqlbackup`)
-- `automysqlbackup_default_passwd` password to use for all servers by default
+### SQL client configuration
+- `automysqlbackup_default_user` MySQL username to use for all servers by default (default `automysqlbackup`)
+- `automysqlbackup_default_passwd` MySQL password to use for all servers by default
 - `automysqlbackup_configurations` list of servers to backup. Take the value of `automysqlbackup_default_user`, `automysqlbackup_default_passwd`, etc if `user`, `passwd`, etc is not defined
 ```
 automysqlbackup_configurations:
@@ -50,7 +50,7 @@ automysqlbackup_configurations:
 - name: server2
   server: 192.168.x.x
 ```
-- `automysqlbackup_default_db_exclude` list of database excluded if no db_names is defined on a server (dafault "`('information_schema' 'performance_schema' 'sys' )`")
+- `automysqlbackup_default_db_exclude` list of database excluded if no db_names is defined on a server (dafault "`('information_schema','performance_schema','sys' )`")
 - `automysqlbackup_default_table_exclude` list of tables excluded in the format db_name.table_name (default "`('mysql.event')`")
 - `automysqlbackup_default_cron` set the default cron time, example `"0 23 * * *"`
 - `automysqlbackup_create_user` create the `automysqlbackup_default_cron_user` system user. Can be `true` or `false` (default `true`)
@@ -59,6 +59,11 @@ automysqlbackup_configurations:
 ### server configuration
 - `automysqlbackup_multicore` using pigz for gzip or pbzip2 for bzip2 multitreading compression. Can be `'yes'` or `'no'` (default `'no'`)
 - `automysqlbackup_multicore_threads` how many treads to use. Can be a number or `auto` to let pigz or pbzip2 autodetect (default `auto`)
+- `automysqlbackup_default_cron_user` user to use to execute the cron to do the backup (default `automysqlbackup`)
+- `automysqlbackup_default_cron_group` group to use for folder rights (default `users`)
+- `automysqlbackup_default_cron_path` cron directory (default `/etc/cron.d`)
+
+### SQL client configuration
 - `automysqlbackup_monthly` Which day do you want monthly backups? (01 to 31) and 0 to disable monthly (default `01`)
 - `automysqlbackup_weekly` Which day do you want weekly backups? (1 to 7 where 1 is Monday) and 0 to disable weekly (default `5`)
 - `automysqlbackup_daily_to_keep` how many days daily backup to keep (default `6`)
@@ -76,9 +81,7 @@ automysqlbackup_configurations:
 - `automysqlbackup_mailcontent` What would you like to be mailed to you : `log` (send only log file), `files` (send log file and sql files as attachments), `stdout` (will simply output the log to the screen if run manually), `quiet` (Only send logs if an error occurs to the MAILADDR) (default `log`)
 - `automysqlbackup_mail_address` Email Address to send mail to
 - `automysqlbackup_dryrun` show what you are gonna do without actually doing it. `0` inactive, `1` active dry-run (default `0`)
-- `automysqlbackup_default_cron_user` user to use to execute the cron to do the backup (default `automysqlbackup`)
-- `automysqlbackup_default_cron_group` group to use for folder rights (default `users`)
-- `automysqlbackup_default_cron_path` cron directory (default `/etc/cron.d`)
+
 
 Example Playbook
 ----------------

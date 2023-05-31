@@ -11,7 +11,7 @@ automysqlbackup_multicore_threads: auto
 
 automysqlbackup_default_user: automysqlbackup
 #automysqlbackup_default_passwd: 
-automysqlbackup_default_db_exclude: ( 'information_schema' 'performance_schema' 'sys' )
+automysqlbackup_default_db_exclude: ( 'information_schema','performance_schema','sys' )
 automysqlbackup_default_table_exclude: ( 'mysql.event' )
 #automysqlbackup_default_cron:
 automysqlbackup_default_cron_user: automysqlbackup
