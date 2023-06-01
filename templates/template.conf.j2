@@ -20,6 +20,7 @@ CONFIG_rotation_weekly={{ automysqlbackup_current_configuration.weekly_to_keep |
 CONFIG_rotation_monthly={{ automysqlbackup_current_configuration.monthly_to_keep | default(automysqlbackup_monthly_to_keep) }}
 
 CONFIG_mysql_dump_port={{ automysqlbackup_current_configuration.port | default(3306) }}
+CONFIG_mysql_dump_full_schema={{ automysqlbackup_current_configuration.dump_full_schema | default('no') }}
 
 CONFIG_mysql_no_tablespaces='{{ automysqlbackup_no_tablespaces }}'
 CONFIG_mysql_dump_usessl='{{ automysqlbackup_dump_usessl }}'
