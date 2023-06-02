@@ -4,7 +4,7 @@
 CONFIG_mysql_mycnf_file='{{ automysqlbackup_conf }}/{{ automysqlbackup_current_configuration.name }}.cnf'
 CONFIG_mysql_dump_host='{{ automysqlbackup_current_configuration.server }}'
 CONFIG_mysql_dump_host_friendly='{{ automysqlbackup_current_configuration.name }}'
-CONFIG_backup_dir='{{ automysqlbackup_backupdir }}'
+CONFIG_backup_dir='{{ automysqlbackup_backupdir }}/{{ automysqlbackup_current_configuration.name }}'
 CONFIG_multicore='{{ automysqlbackup_multicore }}'
 CONFIG_multicore_threads='{{ automysqlbackup_multicore_threads }}'
 
