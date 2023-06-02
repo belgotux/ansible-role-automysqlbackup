@@ -6,6 +6,23 @@
     home: '{{ automysqlbackup_backupdir }}'
   when: automysqlbackup_create_user
 
+- name: Create .ssh folder
+  file:
+    dest: '{{ automysqlbackup_backupdir }}/.ssh'
+    mode: '0750'
+    state: directory
+    owner: '{{ automysqlbackup_default_cron_user }}'
+- name: Generate a ssh key for {{ automysqlbackup_default_cron_user }}
+  openssh_keypair:
+    path: '{{ automysqlbackup_backupdir }}/.ssh/id_ed25519'
+    type: ed25519
+    size: 521
+    state: present
+    force: no
+    owner: '{{ automysqlbackup_default_cron_user }}'
+    comment: 'automysqlbackup key {{ ansible_hostname }}'
+  when: automysqlbackup_create_user
+
 - name: create the differents configurations and credentials files
   include_tasks: configuration-server.yml
   loop: '{{ automysqlbackup_configurations }}'
