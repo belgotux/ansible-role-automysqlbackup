@@ -50,8 +50,8 @@ automysqlbackup_configurations:
 - name: server2
   server: 192.168.x.x
 ```
-- `automysqlbackup_default_db_exclude` list of database excluded if no db_names is defined on a server (dafault "`('information_schema' 'performance_schema' 'sys' )`")
-- `automysqlbackup_default_table_exclude` list of tables excluded in the format db_name.table_name (default "`('mysql.event')`")
+- `automysqlbackup_default_db_exclude` list of database excluded if no db_names is defined on a server (dafault `('information_schema' 'performance_schema' 'sys' )`)
+- `automysqlbackup_default_table_exclude` list of tables excluded in the format `('db_name.table' 'db_name.table2)'` (default `()`)
 - `automysqlbackup_default_cron` set the default cron time, example `"0 23 * * *"`
 - `automysqlbackup_create_user` create the `automysqlbackup_default_cron_user` system user. Can be `true` or `false` (default `true`)
 
@@ -103,6 +103,7 @@ Including an example of how to use your role (for instance, with variables passe
               - name: server3
                 server: 192.168.y.y
                 db_exclude: "( 'test' )"
+                table_exclude: "('db_name1.tablex' 'db_name2.tabley' 'db_name2.log')"
 
               automysqlbackup_backupdir: /tmp/backup
               automysqlbackup_mailcontent: quiet
