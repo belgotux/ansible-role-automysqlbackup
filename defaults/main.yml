@@ -38,3 +38,6 @@ automysqlbackup_dump_latest_clean_filenames: 'no'
 automysqlbackup_mailcontent: log
 automysqlbackup_mail_address:
 automysqlbackup_dryrun: 0
+
+automysqlbackup_percona_toolkit_install: false
+automysqlbackup_default_export_grant_users: false

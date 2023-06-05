@@ -1,4 +1,17 @@
+MAILTO= {{ automysqlbackup_mail_address }}
 {% for cur_conf in automysqlbackup_configurations %}
-{{ cur_conf.cron | default (automysqlbackup_default_cron) }}   {{ automysqlbackup_default_cron_user }}     {{ automysqlbackup_bin }}/automysqlbackup '{{ automysqlbackup_conf }}/{{ cur_conf.name }}.conf'
+{{ cur_conf.cron | default (automysqlbackup_default_cron) }}   {{ automysqlbackup_default_cron_user }}     {{ automysqlbackup_bin }}/automysqlbackup {{ automysqlbackup_conf }}/{{ cur_conf.name }}.conf
+{% if cur_conf.export_grant_users is defined %}
+    {% if cur_conf.export_grant_users %}
+    {% set final_export_grant_users = '{{ cur_conf.export_grant_users }}' %}
+    {% else %}
+    {% set final_export_grant_users = false %}
+    {% endif %}
+{% else %}
+{% set final_export_grant_users = '{{ automysqlbackup_default_export_grant_users }}' %}
+{% endif %}
+{% if final_export_grant_users %}
+{{ cur_conf.cron[:-1] | default (automysqlbackup_default_cron[:-1]) }}{{automysqlbackup_weekly}}   {{ automysqlbackup_default_cron_user }}     {{ automysqlbackup_bin }}/automysqlbackup_export_grant {{ automysqlbackup_conf }}/{{ cur_conf.name }}.conf
+{% endif %}
 
 {% endfor %}

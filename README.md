@@ -1,7 +1,15 @@
 Automysqlbackup
 =========
 
-Role to install the up-to-date version of [automysqlbackup fork](https://github.com/belgotux/automysqlbackup) of the [not maintained wipe_out's project on sourceforge](https://sourceforge.net/projects/automysqlbackup/)
+Role to install the up-to-date version of [automysqlbackup fork](https://github.com/belgotux/automysqlbackup) of the [not maintained wipe_out's project on sourceforge](https://sourceforge.net/projects/automysqlbackup/).
+
+Features
+---------
+
+- export databases in whitelist/blacklist format
+- you can whitelist/backlist some tables
+- A great retention management to keep x weekly, y daily and z monthly
+- Adding feature to dump MySQL users as GRANT commands with `pt-show-grants`. The credentials file is different than the `.my.cnf` (this last doesn't work with `--defauls-file` but with `--config`)
 
 Requirements
 ------------
@@ -82,6 +90,9 @@ automysqlbackup_configurations:
 - `automysqlbackup_mail_address` Email Address to send mail to
 - `automysqlbackup_dryrun` show what you are gonna do without actually doing it. `0` inactive, `1` active dry-run (default `0`)
 
+### export GRANT users (for Debian only)
+- `automysqlbackup_percona_toolkit_install` Install the `percona-toolkit` package (default `false`)
+- `automysqlbackup_default_export_grant_users` : Export the MySQL users (default `false`)
 
 Example Playbook
 ----------------
@@ -98,6 +109,7 @@ Including an example of how to use your role (for instance, with variables passe
                 passwd: testpwd
                 server: xxxx
                 db_names: mysql
+                export_grant_users: true
               - name: server2
                 server: 192.168.x.x
               - name: server3

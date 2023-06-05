@@ -23,7 +23,7 @@
     comment: 'automysqlbackup key {{ ansible_hostname }}'
   when: automysqlbackup_create_user
 
-- name: create the differents configurations and credentials files
+- name: create the differents configurations and credentials files for each server
   include_tasks: configuration-server.yml
   loop: '{{ automysqlbackup_configurations }}'
   loop_control:

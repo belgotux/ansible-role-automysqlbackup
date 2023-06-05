@@ -37,14 +37,21 @@
     dest: '{{ automysqlbackup_bin }}/automysqlbackup'
     mode: '0775'
 
+- name: "automysqlbackup_export_grant - copy bin"
+  copy: 
+    remote_src: yes
+    src: '{{ automysqlbackup_repo }}/automysqlbackup/automysqlbackup_export_grant'
+    dest: '{{ automysqlbackup_bin }}/automysqlbackup'
+    mode: '0775'
+
 - name: "automysqlbackup - create configuration directory"
   file:
     dest: '{{ automysqlbackup_conf }}'
     mode: '0755'
     state: directory
-# - name: "automysqlbackup - copy configuration"
-#   copy: 
-#     remote_src: yes
-#     src: '{{ automysqlbackup_repo }}/automysqlbackup/{{ item }}'
-#     dest: '{{ automysqlbackup_conf }}/{{ item }}'
-#   loop: ['template.cnf','template.conf']
+
+- name: "automysqlbackup - install percona-toolkit"
+  apt: 
+    pkg : percona-toolkit
+    state: present
+  when: ansible_os_family == "Debian" and automysqlbackup_percona_toolkit_install is defined and automysqlbackup_percona_toolkit_install

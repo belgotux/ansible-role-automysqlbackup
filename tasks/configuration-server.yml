@@ -3,7 +3,7 @@
   template:
     src: template.cnf.j2
     dest: '{{ automysqlbackup_conf }}/{{ automysqlbackup_current_configuration.name }}.cnf'
-    mode: '0660'
+    mode: '0600'
     owner: '{{ automysqlbackup_default_cron_user }}'
     group: '{{ automysqlbackup_default_cron_group }}'
 
@@ -12,5 +12,13 @@
     src: template.conf.j2
     dest: '{{ automysqlbackup_conf }}/{{ automysqlbackup_current_configuration.name }}.conf'
     mode: '0664'
+    owner: '{{ automysqlbackup_default_cron_user }}'
+    group: '{{ automysqlbackup_default_cron_group }}'
+
+- name: copy pt-show-grants access file
+  template:
+    src: template.pt.j2
+    dest: '{{ automysqlbackup_conf }}/{{ automysqlbackup_current_configuration.name }}.pt'
+    mode: '0600'
     owner: '{{ automysqlbackup_default_cron_user }}'
     group: '{{ automysqlbackup_default_cron_group }}'
