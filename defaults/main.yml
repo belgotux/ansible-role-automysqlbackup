@@ -6,6 +6,7 @@ automysqlbackup_multicore_bin:
   - pbzip2
 automysqlbackup_bin: /usr/local/bin
 automysqlbackup_conf: /etc/automysqlbackup
+automysqlbackup_homedir: /var/lib/automysqlbackup
 automysqlbackup_multicore: 'no' # yes or no
 automysqlbackup_multicore_threads: auto
 
@@ -15,7 +16,7 @@ automysqlbackup_default_db_exclude: ( 'information_schema' 'performance_schema' 
 automysqlbackup_default_table_exclude: ()
 #automysqlbackup_default_cron:
 automysqlbackup_default_cron_user: automysqlbackup
-automysqlbackup_default_cron_group: users
+automysqlbackup_default_cron_group: adm
 automysqlbackup_create_user: true
 automysqlbackup_default_cron_path: /etc/cron.d
 

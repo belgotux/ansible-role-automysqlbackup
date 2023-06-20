@@ -70,6 +70,7 @@ automysqlbackup_configurations:
 - `automysqlbackup_default_cron_user` user to use to execute the cron to do the backup (default `automysqlbackup`)
 - `automysqlbackup_default_cron_group` group to use for folder rights (default `users`)
 - `automysqlbackup_default_cron_path` cron directory (default `/etc/cron.d`)
+- `automysqlbackup_homedir` home directory (default `/var/lib/automysqlbackup`)
 
 ### SQL client configuration
 - `automysqlbackup_monthly` Which day do you want monthly backups? (01 to 31) and 0 to disable monthly (default `01`)
