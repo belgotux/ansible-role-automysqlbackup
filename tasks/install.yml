@@ -41,7 +41,7 @@
   copy: 
     remote_src: yes
     src: '{{ automysqlbackup_repo }}/automysqlbackup/automysqlbackup_export_grant'
-    dest: '{{ automysqlbackup_bin }}/automysqlbackup'
+    dest: '{{ automysqlbackup_bin }}/automysqlbackup_export_grant'
     mode: '0775'
 
 - name: "automysqlbackup - create configuration directory"
