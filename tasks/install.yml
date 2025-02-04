@@ -2,44 +2,44 @@
   apt: 
     pkg: '{{ automysqlbackup_client }}'
     state: present
-    update_cache: yes
+    update_cache: true
   when: ansible_os_family == "Debian"
 - name: "automysqlbackup - install redhat client"
   yum: 
     name: '{{ automysqlbackup_client }}'
     state: present
-    update_cache: yes
+    update_cache: true
   when: ansible_os_family == "RedHat"
 
 - name: "automysqlbackup - install debian pigz and pbzip2"
   apt: 
     pkg: '{{ automysqlbackup_multicore_bin }}'
     state: present
-    update_cache: yes
+    update_cache: true
   when: ansible_os_family == "Debian" and automysqlbackup_multicore == 'yes'
 - name: "automysqlbackup - install redhat pigz and pbzip2"
   yum: 
     name: '{{ automysqlbackup_multicore_bin }}'
     state: present
-    update_cache: yes
+    update_cache: true
   when: ansible_os_family == "RedHat" and automysqlbackup_multicore == 'yes'
 
 - name: "automysqlbackup - get lastest version"
   git:
     repo: https://github.com/belgotux/automysqlbackup
     dest: '{{ automysqlbackup_repo }}/automysqlbackup'
-    update: yes
+    update: true
 
 - name: "automysqlbackup - copy bin"
   copy: 
-    remote_src: yes
+    remote_src: true
     src: '{{ automysqlbackup_repo }}/automysqlbackup/automysqlbackup'
     dest: '{{ automysqlbackup_bin }}/automysqlbackup'
     mode: '0775'
 
 - name: "automysqlbackup_export_grant - copy bin"
   copy: 
-    remote_src: yes
+    remote_src: true
     src: '{{ automysqlbackup_repo }}/automysqlbackup/automysqlbackup_export_grant'
     dest: '{{ automysqlbackup_bin }}/automysqlbackup_export_grant'
     mode: '0775'

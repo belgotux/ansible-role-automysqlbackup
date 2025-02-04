@@ -18,7 +18,7 @@
     type: ed25519
     size: 521
     state: present
-    force: no
+    force: false
     owner: '{{ automysqlbackup_default_cron_user }}'
     comment: 'automysqlbackup key {{ ansible_hostname }}'
   when: automysqlbackup_create_user
